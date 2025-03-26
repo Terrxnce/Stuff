@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Critical System Error</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .warning {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+        .scan {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .blinking {
+            animation: blink 0.5s infinite;
+        }
+        @keyframes flash {
+            0%, 100% { background-color: black; }
+            50% { background-color: red; }
+        }
+        .flashing {
+            animation: flash 0.2s infinite;
+        }
+    </style>
+</head>
+<body class="flashing">
+    <h1 class="warning blinking">CRITICAL SYSTEM ERROR!</h1>
+    <p class="scan">Scanning for damage... <span id="percentage">0%</span></p>
+    <script>
+        let percentage = 0;
+        const interval = setInterval(() => {
+            percentage += Math.floor(Math.random() * 10);
+            if (percentage >= 100) {
+                document.body.innerHTML = '<h1 class="warning blinking">SYSTEM COMPROMISED</h1><p class="flashing">Sending data to remote server...</p>';
+                clearInterval(interval);
+            } else {
+                document.getElementById('percentage').innerText = percentage + '%';
+            }
+        }, 500);
+    </script>
+</body>
+</html>
